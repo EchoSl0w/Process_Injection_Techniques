@@ -17,12 +17,12 @@ int main(int argc, char* argv[]) {
 	printf("Obtaining handle to target process");
 	HANDLE hProcess = OpenProcess(PROCESS_VM_WRITE | PROCESS_VM_OPERATION | PROCESS_CREATE_THREAD, 0, pid);
 	if (hProcess == NULL) {
-		Error("Failed in obtaining handle to process");
+		return Error("Failed in obtaining handle to process");
 	}
 	printf("Allocating memory...\n");
 	void* buffer = VirtualAllocEx(hProcess, NULL, 1 << 12, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
 	if (buffer == NULL) {
-		Error("Failed in allocating memory");
+		return Error("Failed in allocating memory");
 	}
 	printf("Writing memory...\n");
 	if (!WriteProcessMemory(hProcess, buffer, argv[2], strlen(argv[2]), NULL)) {

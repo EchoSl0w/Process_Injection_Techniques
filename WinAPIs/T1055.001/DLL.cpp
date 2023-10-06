@@ -2,7 +2,7 @@
 #include "pch.h"
 #include "Windows.h"
 
-unsigned char shellcode[] = "xor'ed shellcode"
+unsigned char shellcode[] = "xor'ed shellcode";
 
 
 int run()
